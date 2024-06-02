@@ -1,0 +1,70 @@
+﻿<section id="newsletter">
+	<div class="container">
+		<div class="section-title">
+			<h1>Don't Want to Miss Anything?</h1>
+			<img src="~/images/newsletter/vector.svg" alt="Image of a purple vector with arrow" />
+		</div>
+
+		<form method="post" asp-action="Subscribe" asp-controller="Default" class="content">
+
+			<div class="checkbox-content">
+				<h5>Sign up for Newsletters</h5>
+				<div class="form-check">
+					<input asp-for="DailyNewsletter" class="form-check-input" id="checkbox1" type="checkbox" />
+					<label asp-for="DailyNewsletter"></label>
+				</div>
+				<div class="form-check">
+					<input asp-for="AdvertisingUpdates" class="form-check-input" id="checkbox2" type="checkbox" />
+					<label asp-for="AdvertisingUpdates"></label>
+				</div>
+				<div class="form-check">
+					<input asp-for="WeekinReview" class="form-check-input" id="checkbox3" type="checkbox" />
+					<label asp-for="WeekinReview"></label>
+				</div>
+				<div class="form-check">
+					<input asp-for="EventUpdates" class="form-check-input" id="checkbox4" type="checkbox" />
+					<label asp-for="EventUpdates"></label>
+				</div>
+				<div class="form-check">
+					<input asp-for="StartupsWeekly" class="form-check-input" id="checkbox5" type="checkbox" />
+					<label asp-for="StartupsWeekly"></label>
+				</div>
+				<div class="form-check">
+					<input asp-for="Podcasts" class="form-check-input" id="checkbox6" type="checkbox" />
+					<label asp-for="Podcasts"></label>
+				</div>
+			</div>
+
+			<div class="flex">
+				<div class="form-email">
+					<span><i class="fa-regular fa-envelope"></i></span>
+					<input asp-for="Email" />
+				</div>
+
+				<div>
+					<button type="submit" class="btn-theme">Subscribe*</button>
+				</div>
+
+
+			</div>
+
+@* 			<div>
+				@if (!string.IsNullOrEmpty(TempData["StatusMessage"]?.ToString()))
+				{
+					<span class="status-message">@TempData["StatusMessage"]</span>
+				}
+				else
+				{
+					<span class="status-message">* Yes, I agree to the terms and privacy policy.</span>
+				}
+
+			</div> *@
+
+		</form>
+
+	</div>
+</section>
+
+@code {
+
+}

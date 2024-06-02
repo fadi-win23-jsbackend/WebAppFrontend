@@ -1,0 +1,157 @@
+﻿@page "/courses"
+@attribute [StreamRendering]
+@attribute [Authorize]
+
+
+<PageTitle>Courses</PageTitle>
+
+<section id="courses">
+    <div class="container">
+        <ul class="breadcrumb">
+            <!-- <img src="images/courses-page/breadcrumbs/bx-home-alt.svg"> -->
+            <li><a asp-action="Home" asp-controller="Default"><img src="/images/breadcrumbs/bx-home-alt.svg" />Home</a></li>
+            <li><span>>></span></li>
+            <li><a class="active" asp-action="Index" asp-controller="Courses">Courses</a></li>
+        </ul>
+        <!-- Title -->
+        <div class="section-title">
+            <h1>Courses</h1>
+            <form>
+                <div class="dropdown">
+                    <button class="dropbtn">All categories<i class="fa-sharp fa-regular fa-chevron-down"></i></button>
+                </div>
+                <div>
+                    <input id="searchQuery" type="text" placeholder="Search courses" />
+                    <span><i class="fa-sharp fa-solid fa-magnifying-glass"></i></span>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid">
+            @if (courses == null)
+            {
+                <p><em>No courses found yet. Please wait...</em></p>
+                
+            }
+            else
+            {
+                @foreach (var course in courses)
+                {
+                    <a class="course-card" asp-action="Details" asp-controller="Courses" asp-route-id="@course.Id">
+
+                        <div class="course-card__image">
+                            @if (course.isBestseller)
+                            {
+                                <div class="greenbox">
+                                    <p>Best Seller</p>
+                                </div>
+                            }
+
+                            <div class="bookmark">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                            <img src="/images/courses/@course.Image" alt="@course.Title" />
+
+                        </div>
+
+
+                        <div class="course-card__body">
+                            <h2 class="h5">@course.Title</h2>
+                            <p class="text-s">By @course.Author</p>
+                            <div class="price">
+                                @if (!string.IsNullOrEmpty(course.DiscountPrice))
+                                {
+                                    <div class="flex">
+                                        <p class="price-after-discount">@course.DiscountPrice</p>
+                                        <span class="price-before-discount">@course.Price</span>
+                                    </div>
+
+                                }
+                                <p class="price @(!string.IsNullOrEmpty(course.DiscountPrice) ? "discount-enabled" : "")">@course.Price</p>
+
+                            </div>
+
+                            <div class="divider"></div>
+                        </div>
+                        <div class="course-card__footer text-s">
+                            <div>
+                                <i class="fa-regular fa-clock"></i>
+                                <p>@course.Hours hours</p>
+                            </div>
+                            <div>
+                                <i class="fa-regular fa-thumbs-up"></i>
+                                <p>@course.LikesInPercent (@course.LikesInNumbers)</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+                
+            }
+
+        </div>
+
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#" class="active">3</a>
+            <a href="#">4</a>
+            <a href="#">&raquo;</a>
+        </div>
+    </div>
+</section>
+<section id="skills">
+
+    <div class="container">
+        <div class="content">
+            <p class="text-lead">Ready to get started?</p>
+            <h3 class="h1">
+                Take Your
+                <span>Skills</span>
+                to the Next Level
+            </h3>
+            <a class="btn-theme" href="#">Work with us</a>
+        </div>
+        <img src="/images/courses-illustration/illustration.svg" alt="Illustration of working place">
+    </div>
+</section>
+
+@code {
+
+    private CourseModel[]? courses;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            courses = await Http.GetFromJsonAsync<CourseModel[]>("https://localhost:7155/api/courses"); //lägg in url till API:t
+        }
+
+        catch (Exception ex){ }
+
+    }
+
+
+    private class CourseModel
+    {
+        public int Id { get; set; }
+        public bool isBestseller { get; set; }
+
+        public string Image { get; set; } = null!;
+
+        public string Title { get; set; } = null!;
+
+        public string Author { get; set; } = null!;
+
+        public string Price { get; set; } = null!;
+
+        public string? DiscountPrice { get; set; }
+
+        public string Hours { get; set; } = null!;
+
+        public string LikesInPercent { get; set; } = null!;
+
+        public string LikesInNumbers { get; set; } = null!;
+    }
+
+}

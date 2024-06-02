@@ -1,0 +1,77 @@
+﻿@attribute [StreamRendering]
+
+@if(user == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="account-profile">
+        <div>
+            <img src="/images/account-profile/@user.ProfileImage">
+            <EditForm Model="@uploadModel" OnInvalidSubmit="HandleProfileUpload">
+                <InputFile id="fileUploader" OnChange="HandleFileSelected" hidden />
+                <label for="fileUploader" class="update-circle"><i class="fa-sharp fa-solid fa-rotate-reverse"></i></label>
+            </EditForm>
+        </div>
+        <h5>@user.FirstName @user.LastName</h5>
+        <p>@user.Email</p>
+    </div>
+}
+
+
+
+
+@code {
+
+    private ApplicationUser user = default!;
+    private MultipartFormDataContent uploadModel = new MultipartFormDataContent();
+    private IBrowserFile? selectedFile;
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserDataAsync();
+
+    }
+
+    private void HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+    }
+
+    private async Task LoadUserDataAsync()
+    {
+        user = await UserManager.GetUserAsync(HttpContext.User) ?? null!;
+    }
+
+    public async Task HandleProfileUpload()
+    {
+        if (selectedFile != null)
+        {
+            using var content = new MultipartFormDataContent();
+            var fileContent = new StreamContent(selectedFile.OpenReadStream(maxAllowedSize: 1024 * 1024 * 15));
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(selectedFile.ContentType);
+            content.Add(fileContent, "file", selectedFile.Name);
+
+            try
+            {
+                var response = await Http.PostAsync("", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    await LoadUserDataAsync();
+
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    }
+
+
+}

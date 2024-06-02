@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity 
+@using WebAppFrontend.Data 
+
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@inject NavigationManager NavigationManager
+
+
+
+@rendermode InteractiveServer
+
+
+<div class="account-buttons">
+	<NavLink class="btn-theme"><i class="fa-regular fa-gear"></i><span>Account Details</span></NavLink>
+	<NavLink class="btn-gray"><i class="fa-regular fa-left-from-bracket"></i><span>Sign Out</span></NavLink>
+	<NavLink class="btn-gray" href="account.html"><i class="fa-regular fa-lock"></i><span>Security</span></NavLink>
+	<NavLink class="btn-theme" href="/account/notifications"><i class="fa-regular fa-bell"></i><span>Notifications</span></NavLink>
+	<NavLink class="btn-gray" href="account.html"><i class="fa-regular fa-messages"></i><span>Messages</span></NavLink>
+	<NavLink class="btn-gray" href="account.html"><i class="fa-regular fa-bookmark"></i><span>Saved Items</span></NavLink>
+</div>
+
+
+
+@code {
+
+	private string? currentUrl;
+
+	[CascadingParameter]
+	private HttpContext HttpContext { get; set; } = default!;
+
+	private async Task HandleSignOut()
+	{
+
+		await SignInManager.SignOutAsync();
+		NavigationManager.NavigateTo("/", true);
+
+	}
+}
+
+

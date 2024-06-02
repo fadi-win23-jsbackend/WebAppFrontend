@@ -1,0 +1,123 @@
+﻿#single-course-header {
+
+    .background-image {
+        position: relative;
+        background-image: url('/images/courses/image-1.svg');
+        height: 680px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .container {
+            display: grid;
+            position: relative;
+            z-index: 1;
+            row-gap: 10rem;
+
+            .content {
+                display: grid;
+                row-gap: 2.5rem;
+
+                .course-title {
+                    display: grid;
+                    row-gap: 0.5rem;
+
+                    .flex {
+                        display: flex;
+                        gap: 1rem;
+
+                        .best-seller {
+                            max-width: 120px;
+                            background-color: $success;
+                            height: 25px;
+                            border-radius: 5px;
+                            padding: 0 20px;
+
+                            p {
+                                color: $white;
+                            }
+                        }
+
+                        .digital {
+                            max-width: 120px;
+                            background-color: $white;
+                            height: 25px;
+                            border-radius: 5px;
+                            padding: 0 20px;
+
+                            p {
+                                color: $black;
+                            }
+                        }
+                    }
+
+                    h1 {
+                        color: $white;
+                    }
+
+                    .opacity {
+                        color: $white;
+                        opacity: 70%;
+                    }
+                }
+
+                .reviews {
+                    display: flex;
+                    gap: 1.2rem;
+
+                    .rating-info {
+                        display: flex;
+                        align-items: baseline;
+                        gap: 0.5rem;
+
+                        .fa-solid {
+                            color: $warning;
+                        }
+
+                        .fa-regular {
+                            color: $white;
+                            opacity: 50%;
+                        }
+
+                        p {
+                            color: $white;
+                            opacity: 70%;
+                        }
+                    }
+
+                    .divider {
+                        border-left: 1px solid $white;
+                        height: 1.5rem;
+                        opacity: 15%;
+                    }
+                }
+            }
+
+            .author-profile {
+                display: flex;
+                gap: 1rem;
+
+                h6 {
+                    color: $white;
+                }
+
+                p {
+                    color: $white;
+                    opacity: 85%;
+                }
+            }
+        }
+    }
+}

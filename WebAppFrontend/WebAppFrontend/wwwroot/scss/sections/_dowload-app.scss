@@ -1,0 +1,66 @@
+#dowload-app{
+
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: $gray-100;
+
+    .container{
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include lg{
+            
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10rem;
+        }
+
+
+        .mobiles{
+            display: none;
+
+            @include lg{
+                display: inline-block;
+            }
+        }
+
+        .content{
+
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+
+            h1{
+                max-width: 400px;
+            }
+
+            .box{
+
+
+                p{
+                    margin-bottom: 5px;
+                    color: $gray-600;
+                    
+
+                }
+
+                .stars{
+                    color: $warning;
+                    font-size: 12px;
+
+                }
+
+                .split{
+                    display: flex;
+                    gap: 2rem;
+
+                    img{
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

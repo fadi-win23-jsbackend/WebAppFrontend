@@ -1,0 +1,17 @@
+﻿@inherits LayoutComponentBase
+@layout AccountLayout
+
+
+<section id="account">
+    <div class="container">
+        <aside>
+            <WebAppFrontend.Components.Sections.AccountProfile />
+            <ManageNavMenu />
+        </aside>
+        <div class="account-details">
+            @Body
+        </div>
+
+    </div>
+</section>
+

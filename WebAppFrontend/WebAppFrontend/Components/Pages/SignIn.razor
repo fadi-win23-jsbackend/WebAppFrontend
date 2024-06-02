@@ -1,0 +1,108 @@
+﻿@page "/signin"
+
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Identity
+@using WebAppFrontend.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject ILogger<SignIn> Logger
+@inject NavigationManager NavigationManager
+
+<PageTitle>Sign in</PageTitle>
+
+<section id="signin">
+    <div class="container">
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <div class="alert alert-danger">
+                @ErrorMessage
+            </div>
+        }
+
+        <div class="section-title">
+            <h1>Welcome Back</h1>
+            <p>Don't have an account yet? <a href="/signup">Sign un here.</a></p>
+        </div>
+
+        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="LoginUser" FormName="signin" novalidate>
+            <DataAnnotationsValidator />
+
+            <div id="form-email">
+                <label>Email</label>
+                <InputText type="email" @bind-Value="Input.Email" autocomplete="email" aria-required="true" placeholder="Enter your email" />
+                <ValidationMessage For="() => Input.Email" />
+            </div>
+
+            <div id="form-password">
+                <label>Password</label>
+                <InputText type="password" @bind-Value="Input.Password" autocomplete="password" aria-required="true" placeholder="Enter your password" />
+                <ValidationMessage For="() => Input.Password" />
+            </div>
+
+            <div id="form-checkbox" class="form-check">
+                <InputCheckbox type="checkbox" @bind-Value="Input.RememberMe" class="form-control form-check-input" autocomplete="rememberme" aria-required="true" />
+                <label class="form-check-label text-m">Remember me?</label>
+                <div></div>
+                <ValidationMessage For="() => Input.RememberMe" />
+            </div>
+
+            <button type="submit" class="btn btn-theme-s">Sign in</button>
+
+            <p><a href="/signup">Forgot your password?</a></p>
+
+        </EditForm>
+    </div>
+</section>
+
+@code {
+
+    private string? ErrorMessage { get; set; }
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    [SupplyParameterFromForm]
+    private InputModel Input { get; set; } = new();
+
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (HttpMethods.IsGet(HttpContext.Request.Method))
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+        }
+    }
+
+    public async Task LoginUser()
+    {
+        var result = await SignInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+        if (result.Succeeded)
+        {
+            Logger.LogInformation("User logged in.");
+            NavigationManager.NavigateTo(ReturnUrl ?? "/");
+        }
+
+        else
+        {
+            ErrorMessage = "Incorrect email or password";
+        }
+    }
+
+    private sealed class InputModel
+    {
+        [Required(ErrorMessage = "You must provide an email address")]
+        [EmailAddress]
+        public string Email { get; set; } = "";
+
+        [Required(ErrorMessage = "You must provide a password ")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = "";
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
+}

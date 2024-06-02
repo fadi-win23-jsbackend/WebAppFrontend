@@ -1,0 +1,54 @@
+﻿<header>
+	<div class="container">
+		<a id="logo" href="">
+			<img src="/images/header/Silicon Logotype - Light Mode.svg" alt="Silicon Logo" />
+		</a>
+
+		<div>
+			<nav>
+				<NavLink class="menu-link" href="" Match="NavLinkMatch.All">Overview</NavLink>
+				<NavLink class="menu-link" href="/#features">Features</NavLink>
+				<AuthorizeView>
+					<Authorized>
+						<NavLink class="menu-link" href="/courses">Courses</NavLink>
+					</Authorized>
+				</AuthorizeView>
+				
+				<NavLink class="menu-link" href="/contacts">Contact</NavLink>
+			</nav>
+		</div>
+
+		<div class="btn-switch">
+			<label>Light</label>
+			<label class="switch" for="switch-mode">
+				<input type="checkbox" id="switch-mode" />
+				<span class="slider round"></span>
+			</label>
+			<label>Dark</label>
+		</div>
+
+		<div class="account-buttons">
+			<AuthorizeView>
+				<Authorized>
+					<a href="/account/details">
+						<img src="/images/account-profile/avatar.svg" alt="Profile picture" />
+					</a>
+				</Authorized>
+				<NotAuthorized>
+					<a class="btn-gray" href="/signin"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
+					<a class="btn-theme" href="/signup"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
+				</NotAuthorized>
+			</AuthorizeView>
+		</div>
+
+		<div class="btn-mobile">
+			<a>
+				<img src="/images/header/bx-align-justify.svg" alt="Mobile icon" />
+			</a>
+		</div>
+	</div>
+</header>
+
+@code {
+
+}

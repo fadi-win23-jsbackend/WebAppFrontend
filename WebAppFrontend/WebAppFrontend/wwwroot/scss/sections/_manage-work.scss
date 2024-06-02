@@ -1,0 +1,48 @@
+#manage-work {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+
+
+        @include xl {
+            display: flex;
+            flex-direction: row;
+        }
+
+        gap: 6rem;
+
+        img {
+            display: none;
+
+            @include lg {
+                display: inline-block;
+                width: 55%;
+            }
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+
+            .box {
+                display: flex;
+
+
+                i{
+                    color: $theme;
+                    margin-top: 4px;
+                    margin-right: 10px;
+                }
+            }
+            .btn-theme {
+                margin-top: 20px;
+            }
+        }
+    }
+}

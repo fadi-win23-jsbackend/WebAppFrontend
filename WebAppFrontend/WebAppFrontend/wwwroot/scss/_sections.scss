@@ -1,0 +1,43 @@
+@import './sections/_header.scss';
+@import './sections/_footer.scss';
+
+// Home page
+@import './sections/showcase.scss';
+@import './sections/features.scss';
+@import './sections/dark-light.scss';
+@import  './sections/manage-work.scss';
+@import './sections/dowload-app.scss'; 
+@import './sections/tools.scss';
+@import './sections/newsletter.scss';
+
+@import './sections/subscribe.scss';
+
+//Courses page
+
+@import './sections/courses.scss';
+@import './sections/skills.scss';
+
+
+
+//Sign in page
+@import './sections/signin.scss';
+
+// Sign up page
+@import './sections/signup.scss';
+
+
+//Account Details
+@import './sections/account.scss';
+
+//Notifications 
+@import './sections/_notifications.scss';
+
+
+//Single Course
+
+@import './sections/_singlecourse.scss';
+@import './sections/_coursedescription.scss';
+
+
+
+

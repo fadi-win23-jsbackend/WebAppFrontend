@@ -1,0 +1,97 @@
+#signin {
+    padding: 80px 0px;
+
+    .container {
+        max-width: 530px;
+
+        .section-title {
+
+            p {
+
+                a {
+                    
+
+                    &:hover {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+            width: 100%;
+
+            div {
+
+                label {
+                    color: $gray-900;
+                    font-weight: 600;
+                }
+
+                input {
+                    padding: 12px;
+                    width: 100%;
+                    border-radius: 10px;
+                    outline: none;
+                    border: 1px solid #1919191a;
+
+                    &::placeholder {
+                        color: $gray-700;
+                    }
+
+
+                    &.input-validation-error {
+                        position: relative;
+                        border: 0.063rem solid $danger !important;
+                        color: $danger;
+
+                        &::placeholder {
+                            color: $danger;
+                        }
+                    }
+                }
+            }
+
+            .form-check {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.5rem;
+
+
+                .form-check-input {
+                    padding: 0.5rem;
+                    border-radius: 10%;
+                    border: 2px solid $gray-500;
+
+
+                    &:checked {
+                        background-color: $theme;
+                    }
+                }
+
+                label {
+                    color: $gray-700;
+
+                    &:hover {
+                        color: $theme;
+                    }
+                }
+            }
+
+
+            p {
+                color: $theme;
+                text-align: center;
+
+                a {
+
+                    &:hover {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

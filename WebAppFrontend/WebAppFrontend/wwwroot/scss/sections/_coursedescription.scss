@@ -1,0 +1,116 @@
+﻿#course-description {
+    padding-top: 4.5rem;
+
+    .container {
+        .content {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+
+            .description {
+                display: grid;
+                row-gap: 1rem;
+
+                .description-content {
+                    display: grid;
+                    row-gap: 1rem;
+                    max-width: 750px;
+                }
+
+                .learn {
+                    display: grid;
+                    row-gap: 0.5rem;
+
+                    .box {
+                        display: flex;
+
+                        i {
+                            color: $theme;
+                            margin-top: 4px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+
+            .course-includes {
+                border: 1px solid $gray-300;
+                padding-top: 40px;
+                padding-right: 120px;
+                padding-left: 40px;
+                padding-bottom: 40px;
+                max-height: 460px;
+                display: grid;
+                row-gap: 0.8rem;
+                box-shadow: 0 3px 10px #0000000f, 0 4px 5px #0000000d;
+                border-radius: 1rem;
+                overflow: hidden;
+
+                .course-info {
+                    display: grid;
+                    row-gap: 1rem;
+
+                    .box {
+                        display: flex;
+                        align-items: baseline;
+                        gap: 0.8rem;
+                    }
+                }
+
+                .price {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .original-price {
+                        margin-top: 3px;
+                        font-size: 20px;
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+
+        .program-details {
+            display: grid;
+            row-gap: 2rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+
+            .details-box {
+                display: flex;
+                gap: 2rem;
+                position: relative;
+
+                &:not(:last-child)::after {
+                    content: "";
+                    position: absolute;
+                    top: 65%;
+                    left: 3.1%;
+                    transform: translate(-50%, -50%);
+                    width: 2px;
+                    height: calc(100% + 2rem);
+                    background-color: $gray-100;
+                    z-index: -1;
+                }
+
+                .circle {
+                    background-color: $white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 10px solid $gray-100;
+                    max-width: 80px;
+                    max-height: 80px;
+                    width: 100%;
+                    border-radius: 50%;
+                    z-index: 0;
+                }
+
+                p {
+                    max-width: 640px;
+                }
+            }
+        }
+    }
+}

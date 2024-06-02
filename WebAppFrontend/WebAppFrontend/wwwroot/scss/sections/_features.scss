@@ -1,0 +1,69 @@
+#features{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: $gray-100;
+
+    @include lg {
+        padding-top: 100px;
+        padding-bottom: 180px;
+    }
+
+
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+
+        p{
+            color: $gray-600;
+        }
+
+
+        .tool-features{
+            display: grid;
+            text-align: center;
+            
+
+            @include xl{
+                grid-template-columns: 1fr 1fr 1fr;
+                
+            }
+
+            .box{
+
+                padding: 40px;
+                border: 1px solid $gray-300;
+
+                @include lg {
+                    &:nth-child(1) {
+                        border-top: 0px solid $gray-300;
+                        border-left: 0px solid $gray-300;
+                    }
+                    &:nth-child(2) {
+                        border-top: 0px solid $gray-300;
+                    }
+                    &:nth-child(3) {
+                        border-top: 0px solid $gray-300;
+                        border-right: 0px solid $gray-300;
+                    }
+                    &:nth-child(4) {
+                        border-bottom: 0px solid $gray-300;
+                        border-left: 0px solid $gray-300;
+                    }
+                    &:nth-child(5) {
+                        border-bottom: 0px solid $gray-300;
+                    }
+                    &:nth-child(6) {
+                        border-bottom: 0px solid $gray-300;
+                        border-right: 0px solid $gray-300;
+                    }
+                }
+                
+                
+                &:hover {
+                    background-color: #ffffff;
+                }
+            }
+        }
+    }  
+}
